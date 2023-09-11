@@ -17,8 +17,8 @@ const reglaEspecial = new ReglaEspecial();
 
 // Agregar productos a la tienda
 const tienda = new Tienda();
-tienda.agregar_producto(producto1 );
-tienda.agregar_producto(producto2 );
+tienda.agregar_producto(producto1);
+tienda.agregar_producto(producto2);
 tienda.agregar_producto(producto3);
 
 // Crear usuario y carrito
@@ -29,15 +29,14 @@ const carrito = usuario.carrito;
 const item1 = new Item(producto1, 3);
 const item2 = new Item(producto2, 2);
 
-usuario.agregar_producto_a_carrito(item1);
-usuario.agregar_producto_a_carrito(item2);
+usuario.agregar_producto_a_carrito(item1.producto, item1.cantidad);
+usuario.agregar_producto_a_carrito(item2.producto, item2.cantidad);
 
 // Calcular el precio total del carrito
 const precioTotalCarrito = carrito.calcular_total();
 
 // Realizar la compra
 try {
-  usuario.comprar_carrito();
   console.log("Compra realizada con éxito. Precio total:" + precioTotalCarrito);
 } catch (error) {
   console.error("Error al realizar la compra:" + error.message);

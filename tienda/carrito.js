@@ -1,4 +1,5 @@
-const producto = require('./Producto')
+const Producto = require('./Producto')
+const Item = require('./item')
 class Carrito {
     constructor() {
       this.items = [];
