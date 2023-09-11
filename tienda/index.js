@@ -4,6 +4,7 @@ const Carrito = require('./carrito');
 const Usuario = require('./usuario');
 const Tienda = require('./tienda');
 const { ReglaNormal, ReglaPeso, ReglaEspecial } = require('./ReglasPrecio');
+const ManejadorReglas = require('./manejadorReglas');
 
 // Crear productos y agregarlos a la tienda
 const producto1 = new Producto('EA123', 'Producto 1', 'Descripción 1', 10, 5);
@@ -33,11 +34,15 @@ usuario.agregar_producto_a_carrito(item1.producto, item1.cantidad);
 usuario.agregar_producto_a_carrito(item2.producto, item2.cantidad);
 
 // Calcular el precio total del carrito
-const precioTotalCarrito = carrito.calcular_total();
+//const precioTotalCarrito = carrito.calcular_total();
+const manejador = new ManejadorReglas();
+const precio1 = manejador.aplicarRegla(item1);
+const precio2 = manejador.aplicarRegla(item2);
+
 
 // Realizar la compra
 try {
-  console.log("Compra realizada con éxito. Precio total:" + precioTotalCarrito);
+  console.log("Compra realizada con éxito. Precio total:" + (precio1 + precio2));
 } catch (error) {
   console.error("Error al realizar la compra:" + error.message);
 }

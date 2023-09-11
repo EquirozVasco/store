@@ -46,6 +46,27 @@ ReglaEspecial.prototype.es_aplicable = function (sku) {
 ReglaEspecial.prototype.calcular_total = function (cantidad, precio) {
   // Implementa el cálculo del precio total
   // (Incluyendo la lógica de descuento especial, si es necesario)
+  const unidadesPorDescuento = 3; // Cada 3 unidades, se aplica el descuento
+  const descuentoPorUnidad = 0.2; // 20% de descuento
+
+  let precioTotal = cantidad * precio;
+
+  // Aplicar el descuento por cada 3 unidades hasta un máximo del 50%
+  const descuentoMaximo = precio * (unidadesPorDescuento * descuentoPorUnidad);
+  const maximoDescuento = precioTotal * 0.5;
+
+  while (cantidad >= unidadesPorDescuento) {
+    if (precioTotal >= descuentoMaximo + maximoDescuento) {
+      // Se ha alcanzado el descuento máximo permitido
+      break;
+    }
+
+    // Aplicar el descuento por cada 3 unidades
+    precioTotal -= descuentoMaximo;
+    cantidad -= unidadesPorDescuento;
+  }
+
+  return precioTotal;
 };
 
 module.exports = {
